@@ -9,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ export default function InputText() {
   const classes = useStyles();
   const[city,setCity]=useState(null);
   const[destination,setDestination]=useState(null);
+  const[error,setError]=useState("Enter data");
   const handleSubmit=(e)=>{
     e.preventDefault();
     setCity(e.target.value);
@@ -54,7 +56,7 @@ export default function InputText() {
        setDestination(destination.data.data);
    
     console.log(destination.data.data)
-    }).catch((err) => console.log(err))
+    }).catch((err) => setError(err.toString()))
 }
 
 
@@ -92,12 +94,13 @@ export default function InputText() {
               <TableCell align="right">{destination.attractions.join(",")}</TableCell>
               <TableCell align="right">{destination.languages.join(",")}</TableCell>
               <TableCell align="right">{destination.description}</TableCell>
+              <TableCell align="right"><Button variant="contained" color="primary"href={`https://www.google.co.in/maps/dir/${destination.attractions.join("/")}`} target="_blank">View Itinerary</Button></TableCell>
             </TableRow>
         
         </TableBody>
         </Table>
        </TableContainer>  </>   
-    :<h1>Loading</h1>}
+    :<h1>{error}</h1>}
     </>
   );
 }
