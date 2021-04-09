@@ -8,8 +8,8 @@ const Destination=new Schema(
         currency:{type:String,required:true},
         images:{type:String,required:true},
         description:{type:String,required:true},
-        attractions:{type:String,required:true},
-        languages:{type:String,required:true},
+        attractions:{type:Array,required:true},
+        languages:{type:Array,required:true},
         
     },
     {timestamps:true},

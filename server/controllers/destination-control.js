@@ -102,8 +102,8 @@ getDestinations = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getDestinationById = async (req, res) => {
-    await Destination.findOne({ _id: req.params.id }, (err, destination) => {
+getDestinationByName = async (req, res) => {
+    await Destination.findOne({ name: req.params.id }, (err, destination) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -122,5 +122,5 @@ module.exports={
     updateDestination,
     deleteDestination,
     getDestinations,
-    getDestinationById
+    getDestinationByName
 }
